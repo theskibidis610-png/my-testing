@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Y0 Client</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .dash-container { max-width: 560px; margin: 0 auto; }
+
+    .dash-input-group { display: flex; gap: 12px; margin-bottom: 32px; }
+    .dash-input-group input {
+      flex: 1; padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text-primary); font-family: var(--font-mono); font-size: 0.95rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .dash-input-group input::placeholder { color: var(--text-muted); font-family: var(--font-mono); }
+    .dash-input-group input:focus { border-color: var(--accent); }
+
+    .dash-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px; margin-bottom: 20px;
+    }
+    .dash-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 20px; color: var(--text-primary); }
+
+    .dash-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .dash-row:last-child { border-bottom: none; }
+    .dash-label { font-size: 0.85rem; color: var(--text-secondary); }
+    .dash-value { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); font-family: var(--font-mono); }
+
+    .badge {
+      display: inline-block; padding: 3px 10px; border-radius: 99px;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .badge-active { background: rgba(76,175,80,0.15); color: #66bb6a; }
+    .badge-expired { background: rgba(230,57,70,0.15); color: var(--accent); }
+    .badge-lifetime { background: rgba(100,181,246,0.15); color: #64b5f6; }
+    .badge-monthly { background: rgba(255,183,77,0.15); color: #ffb74d; }
+
+    .dash-reset { margin-top: 20px; text-align: center; }
+    .dash-reset .btn { width: 100%; }
+    .dash-reset .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .dash-reset-info { font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; }
+
+    .dash-message { text-align: center; padding: 16px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; display: none; }
+    .dash-message.success { display: block; background: rgba(76,175,80,0.1); color: #66bb6a; border: 1px solid rgba(76,175,80,0.2); }
+    .dash-message.error { display: block; background: rgba(230,57,70,0.1); color: #ff6b6b; border: 1px solid rgba(230,57,70,0.2); }
+
+    .dash-empty { text-align: center; padding: 48px 20px; color: var(--text-muted); }
+    .dash-empty p { font-size: 0.9rem; }
+
+    #dash-info { display: none; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Y<span>0</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <a href="downloads.html" class="nav-cta">Buy Now</a>
+      <button class="mobile-toggle">&#9776;</button>
+    </div>
+  </nav>
+
+  <section class="hero" style="padding-bottom: 40px;">
+    <div class="hero-badge">&#128100; Customer Dashboard</div>
+    <h1>Your <span class="highlight">License</span></h1>
+    <p>Enter your license key to view your plan, HWID status, and manage your account.</p>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="dash-container">
+
+      <div class="dash-input-group">
+        <input type="text" id="key-input" placeholder="Y0-XXXX-XXXX-XXXX" maxlength="19" spellcheck="false" autocomplete="off">
+        <button class="btn btn-primary" id="check-btn" onclick="checkStatus()">Check</button>
+      </div>
+
+      <div class="dash-message" id="dash-msg"></div>
+
+      <div id="dash-info">
+        <div class="dash-card">
+          <h3>License Info</h3>
+          <div class="dash-row">
+            <span class="dash-label">Status</span>
+            <span class="dash-value" id="d-status"></span>
+          </div>
+          <div class="dash-row">
+            <span class="dash-label">Plan</span>
+            <span class="dash-value" id="d-plan"></span>
+          </div>
+          <div class="dash-row" id="d-expires-row" style="display:none;">
+            <span class="dash-label">Expires</span>
+            <span class="dash-value" id="d-expires"></span>
+          </div>
+          <div class="dash-row">
+            <span class="dash-label">Created</span>
+            <span class="dash-value" id="d-created"></span>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <h3>Hardware ID</h3>
+          <div class="dash-row">
+            <span class="dash-label">Current HWID</span>
+            <span class="dash-value" id="d-hwid"></span>
+          </div>
+          <div class="dash-row">
+            <span class="dash-label">Bound on</span>
+            <span class="dash-value" id="d-bound"></span>
+          </div>
+          <div class="dash-reset">
+            <button class="btn btn-secondary" id="reset-btn" onclick="resetHwid()">Reset HWID</button>
+            <p class="dash-reset-info" id="d-reset-info"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-empty" id="dash-empty">
+        <p>Enter your license key above to view your account.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">Y<span>0</span></div>
+      <p class="footer-text">&copy; 2026 Y0 Client. Not affiliated with Mojang or Microsoft.</p>
+      <ul class="footer-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ====== CHANGE THIS to your deployed server URL ======
+    const API_BASE = 'https://your-y0-api.vercel.app';
+    // =====================================================
+
+    const keyInput = document.getElementById('key-input');
+    const msg = document.getElementById('dash-msg');
+    const info = document.getElementById('dash-info');
+    const empty = document.getElementById('dash-empty');
+
+    // Auto-format key input: insert dashes
+    keyInput.addEventListener('input', function () {
+      let v = this.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+      if (v.length > 2) v = v.slice(0, 2) + '-' + v.slice(2);
+      if (v.length > 7) v = v.slice(0, 7) + '-' + v.slice(7);
+      if (v.length > 12) v = v.slice(0, 12) + '-' + v.slice(12);
+      if (v.length > 17) v = v.slice(0, 17);
+      this.value = v;
+    });
+
+    function showMsg(text, type) {
+      msg.textContent = text;
+      msg.className = 'dash-message ' + type;
+    }
+
+    function clearMsg() { msg.className = 'dash-message'; msg.textContent = ''; }
+
+    function fmtDate(iso) {
+      if (!iso) return '—';
+      return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    async function checkStatus() {
+      const key = keyInput.value.trim();
+      if (!key) return;
+
+      clearMsg();
+      document.getElementById('check-btn').textContent = '...';
+
+      try {
+        const res = await fetch(API_BASE + '/api/status', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key })
+        });
+        const data = await res.json();
+
+        if (data.error) {
+          showMsg(data.error, 'error');
+          info.style.display = 'none';
+          empty.style.display = 'block';
+          return;
+        }
+
+        info.style.display = 'block';
+        empty.style.display = 'none';
+
+        // Status
+        const statusEl = document.getElementById('d-status');
+        statusEl.innerHTML = data.status === 'active'
+          ? '<span class="badge badge-active">Active</span>'
+          : '<span class="badge badge-expired">Expired</span>';
+
+        // Plan
+        const planEl = document.getElementById('d-plan');
+        planEl.innerHTML = data.plan === 'lifetime'
+          ? '<span class="badge badge-lifetime">Lifetime</span>'
+          : '<span class="badge badge-monthly">Monthly</span>';
+
+        // Expiry
+        const expiresRow = document.getElementById('d-expires-row');
+        if (data.expiresAt) {
+          expiresRow.style.display = 'flex';
+          document.getElementById('d-expires').textContent = fmtDate(data.expiresAt);
+        } else {
+          expiresRow.style.display = 'none';
+        }
+
+        // Created
+        document.getElementById('d-created').textContent = fmtDate(data.createdAt);
+
+        // HWID
+        document.getElementById('d-hwid').textContent = data.hwid || 'Not bound';
+        document.getElementById('d-bound').textContent = data.hwidBoundAt ? fmtDate(data.hwidBoundAt) : '—';
+
+        // Reset button
+        const resetBtn = document.getElementById('reset-btn');
+        const resetInfo = document.getElementById('d-reset-info');
+
+        if (!data.hwid) {
+          resetBtn.disabled = true;
+          resetInfo.textContent = 'No HWID bound yet.';
+        } else if (data.canReset) {
+          resetBtn.disabled = false;
+          resetInfo.textContent = 'HWID reset is available now.';
+        } else {
+          resetBtn.disabled = true;
+          resetInfo.textContent = 'Reset available in ' + data.daysUntilReset + ' day(s).';
+        }
+      } catch (e) {
+        showMsg('Could not connect to server.', 'error');
+      } finally {
+        document.getElementById('check-btn').textContent = 'Check';
+      }
+    }
+
+    async function resetHwid() {
+      const key = keyInput.value.trim();
+      if (!key) return;
+
+      clearMsg();
+      const resetBtn = document.getElementById('reset-btn');
+      resetBtn.disabled = true;
+      resetBtn.textContent = 'Resetting...';
+
+      try {
+        const res = await fetch(API_BASE + '/api/reset-hwid', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          showMsg(data.message, 'success');
+          checkStatus();
+        } else {
+          showMsg(data.message, 'error');
+        }
+      } catch (e) {
+        showMsg('Could not connect to server.', 'error');
+      } finally {
+        resetBtn.textContent = 'Reset HWID';
+      }
+    }
+
+    // Allow Enter key to check
+    keyInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') checkStatus();
+    });
+  </script>
+</body>
+</html>
