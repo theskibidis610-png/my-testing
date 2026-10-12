@@ -3,9 +3,11 @@ package dev.y0.client.module;
 import dev.y0.client.event.EventHandler;
 import dev.y0.client.event.events.EventKeyPress;
 import dev.y0.client.module.combat.*;
+import dev.y0.client.module.misc.*;
 import dev.y0.client.module.movement.*;
 import dev.y0.client.module.player.*;
 import dev.y0.client.module.render.*;
+import dev.y0.client.module.world.*;
 import net.minecraft.client.MinecraftClient;
 
 import java.util.ArrayList;
@@ -20,21 +22,43 @@ public class ModuleManager {
         add(new KillAura());
         add(new Velocity());
         add(new Criticals());
+        add(new AutoTotem());
+        add(new Reach());
+        add(new AutoCrystal());
 
         // Movement
         add(new Sprint());
         add(new Speed());
         add(new Fly());
         add(new Scaffold());
+        add(new NoSlow());
+        add(new Step());
+        add(new Jesus());
+        add(new HighJump());
 
         // Render
         add(new Fullbright());
         add(new ESP());
         add(new Tracers());
         add(new HUD());
+        add(new StorageESP());
+        add(new NoRender());
 
         // Player
         add(new NoFall());
+        add(new AutoArmor());
+        add(new ChestStealer());
+        add(new FastPlace());
+        add(new FastBreak());
+        add(new AntiHunger());
+
+        // World
+        add(new Timer());
+        add(new Nuker());
+
+        // Misc
+        add(new AutoFish());
+        add(new ClickGUIModule());
     }
 
     public void add(Module module) {
