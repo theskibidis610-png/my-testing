@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "dev.y0.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "MixinKeyboard",
+    "MixinClientPlayerEntity"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

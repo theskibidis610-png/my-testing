@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "y0-client",
+  "version": "${version}",
+  "name": "Y0 Client",
+  "description": "A high-performance Minecraft PvP client.",
+  "authors": ["Y0 Team"],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/y0/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.y0.client.Y0Client"]
+  },
+  "mixins": ["y0.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21"
+  }
+}
