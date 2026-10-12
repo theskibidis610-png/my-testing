@@ -57,8 +57,19 @@ public class ModuleManager {
         add(new Nuker());
 
         // Misc
+        add(new AntiCrash());
         add(new AutoFish());
+        add(new AutoReconnect());
+        add(new AutoRegister());
+        add(new ChatSuffix());
         add(new ClickGUIModule());
+        add(new Disabler());
+        add(new FakePlayer());
+        add(new IRC());
+        add(new NameProtect());
+        add(new Panic());
+        add(new ServerPlugins());
+        add(new Spammer());
     }
 
     public void add(Module module) {
