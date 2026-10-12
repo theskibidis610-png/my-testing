@@ -6,6 +6,7 @@ import dev.y0.client.module.Module;
 public class NoPitchLimit extends Module {
 
     public NoPitchLimit() {
+        // Companion mixin removes pitch clamp in Entity.changeLookDirection
         super("NoPitchLimit", "Removes the 90 degree pitch limit", Category.PLAYER);
     }
 

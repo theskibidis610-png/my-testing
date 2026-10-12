@@ -6,6 +6,7 @@ import dev.y0.client.module.Module;
 public class NoSwing extends Module {
 
     public NoSwing() {
+        // Companion mixin cancels ClientPlayerEntity.swingHand
         super("NoSwing", "Hides hand swing animation", Category.PLAYER);
     }
 

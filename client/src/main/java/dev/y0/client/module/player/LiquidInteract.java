@@ -6,6 +6,7 @@ import dev.y0.client.module.Module;
 public class LiquidInteract extends Module {
 
     public LiquidInteract() {
+        // Companion mixin makes FluidBlock return solid outline shape
         super("LiquidInteract", "Allows placing blocks on liquids", Category.PLAYER);
     }
 

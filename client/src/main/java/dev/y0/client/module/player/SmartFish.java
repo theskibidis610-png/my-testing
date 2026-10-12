@@ -11,7 +11,6 @@ import net.minecraft.util.Hand;
 public class SmartFish extends Module {
     private final NumberSetting delay = addSetting(new NumberSetting("Delay", "Ticks before recasting", 15.0, 5.0, 60.0, 1.0));
     private int tickCounter;
-    private boolean needRecast;
 
     public SmartFish() {
         super("SmartFish", "Automatically reels in and recasts fishing rod", Category.PLAYER);
@@ -22,18 +21,12 @@ public class SmartFish extends Module {
         if (mc.player == null || mc.interactionManager == null) return;
         if (mc.player.getMainHandStack().getItem() != Items.FISHING_ROD) return;
 
-        if (mc.player.fishHook != null && mc.player.fishHook.isInOpenWater()) {
-            if (mc.player.fishHook.getVelocity().y < -0.04) {
-                mc.interactionManager.interactItem(mc.player, Hand.MAIN_HAND);
-                needRecast = true;
-                tickCounter = 0;
-            }
-        } else if (needRecast) {
-            tickCounter++;
-            if (tickCounter >= delay.getValue()) {
-                mc.interactionManager.interactItem(mc.player, Hand.MAIN_HAND);
-                needRecast = false;
-            }
+        if (mc.player.fishHook != null && mc.player.fishHook.getVelocity().y < -0.04) {
+            mc.interactionManager.interactItem(mc.player, Hand.MAIN_HAND);
+            tickCounter = 0;
+        } else if (mc.player.fishHook == null && ++tickCounter >= delay.getValue()) {
+            mc.interactionManager.interactItem(mc.player, Hand.MAIN_HAND);
+            tickCounter = 0;
         }
     }
 }

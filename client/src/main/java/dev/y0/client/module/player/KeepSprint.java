@@ -6,6 +6,7 @@ import dev.y0.client.module.Module;
 public class KeepSprint extends Module {
 
     public KeepSprint() {
+        // Companion mixin prevents setSprinting(false) on attack
         super("KeepSprint", "Prevents sprint from resetting when hitting entities", Category.PLAYER);
     }
 

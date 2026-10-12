@@ -6,6 +6,7 @@ import dev.y0.client.module.Module;
 public class AntiEntityPush extends Module {
 
     public AntiEntityPush() {
+        // Companion mixin cancels Entity.pushAwayFrom for local player
         super("AntiEntityPush", "Prevents entities from pushing you", Category.PLAYER);
     }
 

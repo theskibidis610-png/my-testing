@@ -6,6 +6,7 @@ import dev.y0.client.module.Module;
 public class VanillaSpoof extends Module {
 
     public VanillaSpoof() {
+        // Companion mixin intercepts brand payload in ClientPlayNetworkHandler
         super("VanillaSpoof", "Spoofs the client brand as vanilla", Category.PLAYER);
     }
 

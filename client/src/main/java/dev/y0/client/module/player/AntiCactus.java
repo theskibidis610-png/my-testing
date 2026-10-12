@@ -6,6 +6,7 @@ import dev.y0.client.module.Module;
 public class AntiCactus extends Module {
 
     public AntiCactus() {
+        // Companion mixin cancels CactusBlock entity collision
         super("AntiCactus", "Prevents cactus damage", Category.PLAYER);
     }
 

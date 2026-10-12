@@ -6,6 +6,7 @@ import dev.y0.client.module.Module;
 public class AntiFireOverlay extends Module {
 
     public AntiFireOverlay() {
+        // Companion mixin skips InGameOverlayRenderer fire rendering
         super("AntiFireOverlay", "Removes the fire overlay effect from the screen", Category.PLAYER);
     }
 

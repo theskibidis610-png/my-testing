@@ -20,17 +20,12 @@ public class AutoPickup extends Module {
 
         ItemEntity closest = null;
         double closestDist = range.getValue();
-
         for (var entity : mc.world.getEntities()) {
-            if (entity instanceof ItemEntity item) {
-                double dist = mc.player.distanceTo(item);
-                if (dist < closestDist) {
-                    closestDist = dist;
-                    closest = item;
-                }
+            if (entity instanceof ItemEntity item && mc.player.distanceTo(item) < closestDist) {
+                closestDist = mc.player.distanceTo(item);
+                closest = item;
             }
         }
-
         if (closest != null) {
             mc.player.lookAt(closest.getCommandSource().getEntityAnchor(), closest.getPos());
         }

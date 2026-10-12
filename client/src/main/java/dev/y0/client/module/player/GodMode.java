@@ -6,6 +6,7 @@ import dev.y0.client.module.Module;
 public class GodMode extends Module {
 
     public GodMode() {
+        // Companion mixin cancels ClientPlayerEntity.damage
         super("GodMode", "Client-side god mode attempt", Category.PLAYER);
     }
 

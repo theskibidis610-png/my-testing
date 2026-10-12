@@ -5,8 +5,7 @@ import dev.y0.client.event.events.EventTick;
 import dev.y0.client.module.Category;
 import dev.y0.client.module.Module;
 import dev.y0.client.setting.NumberSetting;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import net.minecraft.network.packet.Packet;
 
 public class FakeLag extends Module {
@@ -21,17 +20,14 @@ public class FakeLag extends Module {
     @Override
     protected void onDisable() {
         if (mc.player == null) return;
-        for (Packet<?> packet : packetBuffer) {
-            mc.player.networkHandler.getConnection().send(packet);
-        }
+        packetBuffer.forEach(p -> mc.player.networkHandler.getConnection().send(p));
         packetBuffer.clear();
     }
 
     @EventHandler
     public void onTick(EventTick event) {
         if (mc.player == null) return;
-        tickCounter++;
-        if (tickCounter >= delay.getValue() && !packetBuffer.isEmpty()) {
+        if (++tickCounter >= delay.getValue() && !packetBuffer.isEmpty()) {
             mc.player.networkHandler.getConnection().send(packetBuffer.remove(0));
             tickCounter = 0;
         }
