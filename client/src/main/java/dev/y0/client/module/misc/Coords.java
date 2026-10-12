@@ -5,7 +5,6 @@ import dev.y0.client.event.events.EventTick;
 import dev.y0.client.module.Category;
 import dev.y0.client.module.Module;
 import dev.y0.client.setting.BooleanSetting;
-import net.minecraft.text.Text;
 
 public class Coords extends Module {
     private final BooleanSetting show = addSetting(new BooleanSetting("Show", "Display coordinates on screen", true));
