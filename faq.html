@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAQ - Y0 Client</title>
-  <meta name="description" content="Frequently asked questions about Y0 Minecraft client.">
+  <meta name="description" content="Frequently asked questions about Y0 Minecraft client for EDC server.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -41,17 +41,17 @@
           <span class="icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Yes, Y0 is completely free to download and use. There are no paywalls, subscriptions, or premium tiers. All 120+ modules are included in the full version.</div>
+          <div class="faq-answer-inner">Yes, Y0 is completely free to download and use. There are no paywalls, subscriptions, or premium tiers. All 500+ modules are included.</div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          Which Minecraft versions are supported?
+          Which Minecraft version does Y0 support?
           <span class="icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Y0 supports Minecraft Java Edition from 1.8 through 1.21. Each version has optimized bypasses and modules tailored to that version's combat system.</div>
+          <div class="faq-answer-inner">Y0 is built for Minecraft Java Edition 1.21.1 using the Fabric mod loader. It's specifically optimized for EDC server gameplay and 1.21.1 combat mechanics.</div>
         </div>
       </div>
 
@@ -61,27 +61,34 @@
           <span class="icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Download the JAR file from the Downloads page. Run it with Java 17 or newer. The installer will set up Y0 in your .minecraft directory. Launch Minecraft and select the Y0 profile from the launcher.</div>
+          <div class="faq-answer-inner">
+            1. Install Fabric Loader for Minecraft 1.21.1 from fabricmc.net.<br>
+            2. Download Fabric API and put it in your .minecraft/mods folder.<br>
+            3. Download the Y0 .jar file from the Downloads page and put it in your .minecraft/mods folder.<br>
+            4. Launch Minecraft with the Fabric 1.21.1 profile.<br>
+            5. Press Right Shift in-game to open the ClickGUI.<br><br>
+            You need Java 21 or newer installed on your system.
+          </div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          Is Y0 safe to use?
+          What is EDC?
           <span class="icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Y0 contains no malware, miners, or rats. The client is scanned regularly and we encourage users to verify the download hash. Use on servers at your own risk - using any modified client may violate server rules.</div>
+          <div class="faq-answer-inner">EDC is a Minecraft PvP server. Y0 is specifically built and optimized for EDC server gameplay, with modules tuned for EDC's meta including crystal PvP, surround, bed bombing, and anchor mechanics.</div>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          Can I use Y0 on Hypixel?
+          How many modules does Y0 have?
           <span class="icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Y0 includes bypass modes for major servers including Hypixel. However, using any modified client on Hypixel is against their rules and you risk a ban. Use at your own discretion.</div>
+          <div class="faq-answer-inner">Y0 has 500+ modules across 6 categories: Combat (85), Movement (87), Render (87), Player (85), World (79), and Misc (79). Every module has configurable settings including toggles, number sliders, and mode selectors.</div>
         </div>
       </div>
 
@@ -91,7 +98,27 @@
           <span class="icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Press Right Shift to open the ClickGUI. From there you can enable modules, change settings, and customize keybinds. Press Escape to close it.</div>
+          <div class="faq-answer-inner">Press Right Shift to open the ClickGUI. You'll see draggable panels for each module category. Click a module name to toggle it, and click the settings icon to adjust its options. Press Escape to close it.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Is Y0 compatible with other Fabric mods?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes. Y0 is a standard Fabric mod and works alongside other Fabric mods like Sodium, Lithium, Iris, and more. Just make sure you're using Fabric Loader 0.16.5 or newer and have Fabric API installed.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Where are my configs saved?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Y0 saves all module settings to JSON files in your .minecraft/y0/ folder. Settings are automatically saved when you change them and loaded when you launch the game. You can share config files with other Y0 users.</div>
         </div>
       </div>
 
@@ -101,27 +128,7 @@
           <span class="icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Yes. Y0 runs on Windows 10+, macOS 12+, and most Linux distributions. You just need Java 17 or newer installed on your system.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          How do I write plugins?
-          <span class="icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Y0 has a plugin API that supports Java and Kotlin. Create a class that extends Module, override the lifecycle methods, and drop the compiled JAR into the plugins folder. Full API documentation is available on our Discord.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Where do I report bugs?
-          <span class="icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Report bugs in the #bug-reports channel on our Discord server. Include your Minecraft version, Y0 version, and steps to reproduce the issue. Crash logs from the .minecraft/y0/logs folder are helpful too.</div>
+          <div class="faq-answer-inner">Yes. Y0 runs on Windows 10+, macOS 12+, and most Linux distributions. You need Java 21 or newer and Fabric Loader installed on your system.</div>
         </div>
       </div>
 
